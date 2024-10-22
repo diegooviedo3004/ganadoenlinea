@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon link -->
+
+    <title>MNG Cloud - LWC Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff; /* White background */
+            color: #333;
+            text-align: center;
+
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+        .cta-button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+        .advantages {
+            list-style-type: none;
+            padding: 0;
+            text-align: left; /* Align text to the left */
+            margin: 0 auto; /* Center the list */
+            max-width: 400px; /* Limit the width of the list */
+        }
+        .advantages li {
+            margin: 10px 0;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+        .check {
+            color: #28a745; /* Green color */
+            margin-right: 10px;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto; /* Center modal */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%; /* Set to a percentage for better responsiveness */
+            max-width: 400px; /* Limit the width of the modal */
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+            position: absolute; /* Position absolutely for centering */
+            top: 50%; /* 50% from the top */
+            left: 50%; /* 50% from the left */
+            transform: translate(-50%, -50%); /* Center the modal */
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Form Styles */
+        input[type="text"],
+        input[type="email"] {
+            width: calc(100% - 20px); /* Full width minus padding */
+            margin-bottom: 15px; /* Space below inputs */
+            padding: 10px; /* Inner padding for inputs */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 4px; /* Rounded borders */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%; /* Full width for button */
+        }
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .cta-button {
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+            .modal-content {
+                margin: 5% auto; /* Adjust margin to center modal */
+                width: 90%; /* Full width on mobile */
+                max-height: 80%; /* Limit the height to avoid overflow */
+                overflow-y: auto; /* Enable scroll if content is too tall */
+            }
+
+            body {
+                margin-left: 3rem;
+                margin-right: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <img src="logo.png" alt="MNG Cloud Logo" style="margin-bottom: 5px;">
+        <h1>Welcome to MNG Cloud</h1>
+        <p>We offer intuitive and effective solutions in LWC for Salesforce.</p>
+        <ul class="advantages">
+            <li><span class="check">✔️</span>Intuitive interface</li>
+            <li><span class="check">✔️</span>Smooth integration with Salesforce</li>
+            <li><span class="check">✔️</span>Use of Lightning Design System (LDS)</li>
+            <li><span class="check">✔️</span>Personalized support</li>
+            <li><span class="check">✔️</span>Measurable and effective results</li>
+        </ul><br><br>
+        <button class="cta-button" id="modalBtn">Contact Us Now</button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeBtn">&times;</span>
+            <h2>Contact Us</h2>
+            <form action="" method="POST" netlify>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("modalBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeBtn");
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
